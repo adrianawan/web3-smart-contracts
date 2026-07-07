@@ -17,3 +17,7 @@ contract Counter {
     emit Increment(by);
   }
 }
+
+function getCount() public view returns(uint) {
+    return count;
+}

@@ -55,3 +55,32 @@ After setting the variable, you can run the deployment with the Sepolia network:
 ```shell
 npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
 ```
+
+
+# Onchain Counter
+
+A simple smart contract built with Hardhat and Solidity.
+
+## Features
+
+- Increment counter
+- Decrement counter
+- Reset counter
+- Get current value
+
+## Tech Stack
+
+- Solidity
+- Hardhat
+- TypeScript
+- Ethers.js
+
+## Deployment
+
+npm install
+
+npx hardhat compile
+
+npx hardhat test
+
+npx hardhat ignition deploy ./ignition/modules/Counter.ts

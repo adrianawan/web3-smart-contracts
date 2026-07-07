@@ -1,9 +1,11 @@
 import { buildModule } from "@nomicfoundation/hardhat-ignition/modules";
 
 export default buildModule("CounterModule", (m) => {
-  const counter = m.contract("Counter");
+  // Account pertama yang digunakan untuk deploy
+  const deployer = m.getAccount(0);
 
-  m.call(counter, "incBy", [5n]);
+  // Deploy Counter dan set deployer sebagai owner
+  const counter = m.contract("Counter", [deployer]);
 
   return { counter };
 });

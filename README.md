@@ -1,143 +1,101 @@
-# Sample Hardhat 3 Project (`node:test` and `viem`)
-
-This project showcases a Hardhat 3 project using the native Node.js test runner (`node:test`) and the `viem` library for Ethereum interactions.
-
-To learn more about Hardhat 3, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3](https://hardhat.org/hardhat3-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
 # Onchain Smart Contracts
+
+![Solidity](https://img.shields.io/badge/Solidity-0.8.28-blue)
+
+![Hardhat](https://img.shields.io/badge/Hardhat-3-yellow)
+
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ![CI](https://github.com/adrianawan/Onchain/actions/workflows/solidity.yml/badge.svg)
 
-## Project Overview
+A collection of Ethereum smart contracts built with **Solidity**, **Hardhat 3**, **OpenZeppelin**, and **Hardhat Ignition**.
 
-This example project includes:
+This repository contains multiple smart contract examples demonstrating common Web3 development patterns, including counters, ERC-20 tokens, and decentralized voting.
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using [`node:test`](nodejs.org/api/test.html), the new Node.js native test runner, and [`viem`](https://viem.sh/).
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
-
-## Usage
-
-### Running Tests
-
-To run all the tests in the project, execute the following command:
-
-```shell
-npx hardhat test
-```
-
-You can also selectively run the Solidity or `node:test` tests:
-
-```shell
-npx hardhat test solidity
-npx hardhat test nodejs
-```
-
-### Make a deployment to Sepolia
-
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
-
-To run the deployment to a local chain:
-
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
-
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
-
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
-
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
-
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
-
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
-
-
-# Onchain Counter
-
-A simple smart contract built with Hardhat and Solidity.
+---
 
 ## Features
 
+### Counter Contract
+
 - Increment counter
+- Increment by custom value
 - Decrement counter
 - Reset counter
-- Get current value
+- Owner access control (OpenZeppelin Ownable)
+
+### ERC-20 Token
+
+- ERC20 Standard
+- Initial Supply
+- Owner-only mint function
+- OpenZeppelin ERC20
+
+### Voting Contract
+
+- Add candidates
+- Start election
+- End election
+- One vote per wallet
+- Prevent double voting
+- Determine election winner
+
+---
 
 ## Tech Stack
 
-- Solidity
-- Hardhat
-- TypeScript
-- Ethers.js
-
-## Deployment
-
-npm install
-
-npx hardhat compile
-
-npx hardhat test
-
-npx hardhat ignition deploy ./ignition/modules/Counter.ts
-
-## Ethereum Sepolia
-
-### Counter Contract
-
-Address:
-
-```text
-0xb753818E252695376286d5921322ae5101191929
-```
-
-### Adrian Token (ADR)
-
-Address:
-
-```text
-0xbFDb434420ADFBF0Ca46b7a41B2CCF16AF092B22
-```
+| Technology | Version |
+|------------|---------|
+| Solidity | 0.8.28 |
+| Hardhat | 3 |
+| TypeScript | Latest |
+| OpenZeppelin | 5.x |
+| Viem | Latest |
+| Hardhat Ignition | ✓ |
+| GitHub Actions | ✓ |
 
 ---
 
-# Technology Stack
+## Project Structure
 
-- Solidity 0.8.28
-- Hardhat 3
-- TypeScript
-- Hardhat Ignition
-- OpenZeppelin Contracts
-- Viem
-- Ethereum Sepolia
-
----
-
-# Project Structure
-
-```
+```text
 contracts/
 ├── Counter.sol
-└── MyToken.sol
+├── MyToken.sol
+└── Voting.sol
 
 ignition/
 └── modules/
     ├── Counter.ts
-    └── MyToken.ts
+    ├── MyToken.ts
+    └── Voting.ts
 
 test/
+├── Counter.ts
+├── Counter.t.sol
+└── Voting.t.sol
 ```
 
 ---
 
-# Getting Started
+## Smart Contracts
+
+| Contract | Network | Address |
+|----------|---------|----------|
+| Counter | Sepolia | `0xb753818E252695376286d5921322ae5101191929` |
+| Adrian Token (ADR) | Sepolia | `0xbFDb434420ADFBF0Ca46b7a41B2CCF16AF092B22` |
+| Voting | Sepolia | Deploy after completion |
+
+---
+
+## Getting Started
+
+Clone the repository
+
+```bash
+git clone https://github.com/adrianawan/Onchain.git
+cd Onchain
+```
 
 Install dependencies
 
@@ -169,8 +127,43 @@ Deploy ERC20 Token
 npx hardhat ignition deploy ./ignition/modules/MyToken.ts --network sepolia
 ```
 
+Deploy Voting
+
+```bash
+npx hardhat ignition deploy ./ignition/modules/Voting.ts --network sepolia
+```
+
 ---
 
-# License
+## Test Results
+
+✔ Solidity Tests
+
+- Counter
+- Voting
+
+✔ Node.js Tests
+
+- Counter (Viem)
+
+✔ GitHub Actions CI
+
+---
+
+## Development Roadmap
+
+- [x] Counter Contract
+- [x] ERC20 Token
+- [x] Voting Contract
+- [x] Unit Testing
+- [x] GitHub Actions
+- [x] Sepolia Deployment
+- [ ] Contract Verification on Etherscan
+- [ ] Frontend DApp
+- [ ] ERC721 NFT Collection
+
+---
+
+## License
 
 MIT

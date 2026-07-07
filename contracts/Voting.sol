@@ -89,6 +89,40 @@ contract Voting is Ownable {
         return candidates.length;
     }
 
+    function getWinner()
+    public
+    view
+    returns (
+        uint256,
+        string memory,
+        uint256
+    )
+    {
+        require(candidates.length > 0, "No candidates");
+
+        uint256 winnerIndex = 0;
+
+        for (uint256 i = 1; i < candidates.length; i++) {
+
+            if (
+                candidates[i].voteCount >
+                candidates[winnerIndex].voteCount
+            ) {
+                winnerIndex = i;
+            }
+
+        }
+
+        Candidate memory winner =
+            candidates[winnerIndex];
+
+        return (
+            winner.id,
+            winner.name,
+            winner.voteCount
+        );
+    }
+
     function startElection()
     public
     onlyOwner

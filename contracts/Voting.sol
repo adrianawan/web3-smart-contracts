@@ -14,38 +14,54 @@ contract Voting is Ownable {
     Candidate[] public candidates;
 
     mapping(address => bool) public hasVoted;
+    bool public electionActive;
 
     constructor(address initialOwner)
         Ownable(initialOwner)
     {}
 
     function addCandidate(string memory name)
-        public
-        onlyOwner
-    {
-        candidates.push(
-            Candidate({
-                id: candidates.length,
-                name: name,
-                voteCount: 0
-            })
-        );
-    }
+    public
+    onlyOwner
+        {
+            candidates.push(
+                Candidate({
+                    id: candidates.length,
+                    name: name,
+                    voteCount: 0
+                })
+            );
+
+            emit CandidateAdded(candidates.length - 1, name);
+        }
 
     function vote(uint256 candidateId)
-        public
-    {
-        require(!hasVoted[msg.sender], "Already voted");
+    public
+        {
+            require(
+                electionActive,
+                "Election is not active"
+            );
 
-        require(
-            candidateId < candidates.length,
-            "Invalid candidate"
-        );
+            require(
+                !hasVoted[msg.sender],
+                "Already voted"
+            );
 
-        hasVoted[msg.sender] = true;
+            require(
+                candidateId < candidates.length,
+                "Invalid candidate"
+            );
 
-        candidates[candidateId].voteCount++;
-    }
+            hasVoted[msg.sender] = true;
+
+            candidates[candidateId].voteCount++;
+
+            emit VoteCast(
+                msg.sender,
+                candidateId
+            );
+        }
 
     function getCandidate(uint256 candidateId)
         public
@@ -72,4 +88,29 @@ contract Voting is Ownable {
     {
         return candidates.length;
     }
+
+    function startElection()
+    public
+    onlyOwner
+        {
+            electionActive = true;
+
+            emit ElectionStarted();
+        }
+    
+    function endElection()
+    public
+    onlyOwner
+    {
+        electionActive = false;
+
+        emit ElectionEnded();
+    }
 }
+event CandidateAdded(uint256 candidateId, string name);
+
+event VoteCast(address voter, uint256 candidateId);
+
+event ElectionStarted();
+
+event ElectionEnded();

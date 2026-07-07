@@ -158,7 +158,7 @@ npx hardhat ignition deploy ./ignition/modules/Voting.ts --network sepolia
 - [x] Unit Testing
 - [x] GitHub Actions
 - [x] Sepolia Deployment
-- [ ] Contract Verification on Etherscan
+- [x] Contract Verification on Etherscan
 - [ ] Frontend DApp
 - [ ] ERC721 NFT Collection
 

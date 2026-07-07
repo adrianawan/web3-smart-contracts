@@ -93,8 +93,8 @@ test/
 Clone the repository
 
 ```bash
-git clone https://github.com/adrianawan/Onchain.git
-cd Onchain
+git clone https://github.com/adrianawan/web3-smart-contracts
+cd web3-smart-contracts
 ```
 
 Install dependencies

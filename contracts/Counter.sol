@@ -1,7 +1,14 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.28;
 
-contract Counter {
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Counter is Ownable {
+
+    constructor(address initialOwner)
+        Ownable(initialOwner)
+    {}
+
     uint256 private count;
 
     event Increment(uint256 by);
@@ -25,7 +32,7 @@ contract Counter {
         emit Decrement(1);
     }
 
-    function reset() public {
+    function reset() public onlyOwner {
         count = 0;
         emit Reset();
     }

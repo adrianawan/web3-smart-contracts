@@ -8,7 +8,7 @@ contract CounterTest is Test {
     Counter counter;
 
     function setUp() public {
-        counter = new Counter();
+    counter = new Counter(address(this));
     }
 
     function test_InitialValue() public view {

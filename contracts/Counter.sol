@@ -21,3 +21,27 @@ contract Counter {
 function getCount() public view returns(uint) {
     return count;
 }
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract Counter {
+
+    uint public count;
+
+    function increment() public {
+        count++;
+    }
+
+    function decrement() public {
+        count--;
+    }
+
+    function reset() public {
+        count = 0;
+    }
+
+    function add(uint value) public {
+        count += value;
+    }
+}

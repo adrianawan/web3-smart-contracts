@@ -3,6 +3,9 @@
 This project showcases a Hardhat 3 project using the native Node.js test runner (`node:test`) and the `viem` library for Ethereum interactions.
 
 To learn more about Hardhat 3, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3](https://hardhat.org/hardhat3-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+# Onchain Smart Contracts
+
+![CI](https://github.com/adrianawan/Onchain/actions/workflows/solidity.yml/badge.svg)
 
 ## Project Overview
 
